@@ -7,9 +7,8 @@
     <groupId>zee</groupId>
     <artifactId>zee</artifactId>
     <name>z-evaluation-engine</name>
-    <version>0.9.3-SNAPSHOT</version>
+    <version>0.9.3</version>
     <packaging>jar</packaging>
-    <url>http://zee.dev.java.net</url>
     <description>This is a Java library for evaluating mathematical expressions, functions, and sets of equations.</description>
     <inceptionYear>2000</inceptionYear>
     <licenses>
