@@ -1,8 +1,11 @@
 
 
-0.9.3
+0.9.3 released 2/23/2013
 - fixed bug with double-negatives on variables
-
+- removed reflection for performance increase on parsing
+- move apache commons math source to dependency
+- moved samples to own project
+- moved to Java 7
 
 0.9.2 released 10/1/2010
 - fixed bug: atan is now calculated correctly
@@ -10,4 +13,4 @@
 - feature: there is now a maven distribution (manual install required) including source and javadocs
 - code is better tested
 
-0.9.1 initial release: 8/1/2010
+0.9.1 initial public release: 8/1/2010
