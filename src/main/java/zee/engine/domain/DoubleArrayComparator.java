@@ -20,13 +20,15 @@ public class DoubleArrayComparator implements Comparator<double[]> {
     */
    @Override
    public int compare(double[] r1, double[] r2) {
-      if(r1.length != r2.length)
+      if(r1.length != r2.length) {
          throw new IllegalArgumentException();
+      }
       int diff = 0;
       for(int c=0; c< r1.length; c++) {
          double sub = r1[c] - r2[c];
-         if( sub == 0)
+         if( sub == 0) {
             continue;
+         }
          else if ( sub < 0) {
             diff = -1;
             break;

@@ -214,16 +214,18 @@ public class Domain implements DomainInterface {
        
       Domain recombined = new Domain(this);
       
-      if(points.containsKey(varName))
+      if(points.containsKey(varName)) {
          return recombined;
+      }
       
       // for a single variable name
       // these are the new values being recombined
       // remember how many times you'll need to replicate this one
       double[] curVals = recombined.allDefs.get(varName);
       int numReps = 1;
-      if( recombined.points.keySet().size() > 0 )
+      if( recombined.points.keySet().size() > 0 ) {
          numReps = (recombined.points.values().iterator().next()).length;
+      }
       
       // replicate the variables previously recombined
       // each previous variable is replicated as many times as there are 
@@ -234,8 +236,9 @@ public class Domain implements DomainInterface {
          Map.Entry<String,double[]> entry = prevEntries.next();
          double[] p  = entry.getValue();
          double[] pr = new double[ p.length * curVals.length ];
-         for(int i=0; i < curVals.length; i++)
+         for(int i=0; i < curVals.length; i++) {
             System.arraycopy(p, 0, pr, i*p.length, p.length);
+         }
          recombined.points.put(entry.getKey(), pr);
       }
 
@@ -314,8 +317,9 @@ public class Domain implements DomainInterface {
       
       Comparator<double[]> comparator = new DoubleArrayComparator();
       TreeSet<double[]> uniquePoints = new TreeSet<double[]>(comparator);
-      for(int r=0; r < vals.length; r++)
+      for(int r=0; r < vals.length; r++) {
          uniquePoints.add(vals[r]);
+      }
       
       nd.length = uniquePoints.size();
       
@@ -329,8 +333,9 @@ public class Domain implements DomainInterface {
       matrix = new Array2DRowRealMatrix(vals, true);
       vals = matrix.transpose().getData();
 
-      for(r=0; r < vals.length; r++)
+      for(r=0; r < vals.length; r++) {
          nd.points.put(keyArray[r].toString(), vals[r]);
+      }
       
       return nd;
    }
