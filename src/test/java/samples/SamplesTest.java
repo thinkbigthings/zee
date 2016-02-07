@@ -172,11 +172,12 @@ public class SamplesTest {
       k = new EquationProcessor(eqs);
       List<double[]> results = k.evaluate(defs,outputColumns);
 
-      double[] x = new double[]{1,1,1,2,2,2,3,3,3};
-      double[] y = new double[]{1,2,3,1,2,3,1,2,3};
-      double[] f = new double[]{1,1,1,sqrt(2),sqrt(2),sqrt(2),sqrt(3),sqrt(3),sqrt(3)};
-      double[] g = new double[]{g(1),g(2),g(3),g(1),g(2),g(3),g(1),g(2),g(3)};
-      double[] h = new double[]{1-sin(1),1-sin(2),1-sin(3),2-sin(1),2-sin(2),2-sin(3),3-sin(1),3-sin(2),3-sin(3)};
+      double[] x = new double[]{1,2,3,1,2,3,1,2,3};
+      double[] y = new double[]{1,1,1,2,2,2,3,3,3};
+
+      double[] f = new double[]{1,sqrt(2),sqrt(3),1,sqrt(2),sqrt(3),1,sqrt(2),sqrt(3)};
+      double[] g = new double[]{g(1),g(1),g(1),g(2),g(2),g(2),g(3),g(3),g(3)};
+      double[] h = new double[]{1-sin(1),2-sin(1),3-sin(1),1-sin(2),2-sin(2),3-sin(2),1-sin(3),2-sin(3),3-sin(3)};
 
       assertArrayEquals(x, results.get(0), 10E-10);
       assertArrayEquals(y, results.get(1), 10E-10);
@@ -219,11 +220,11 @@ public class SamplesTest {
       assertEquals(5, results.size());
       assertEquals(25, results.get(0).length);
 
-      assertEquals("x", 3.0, results.get(0)[10], epsilon);
-      assertEquals("y", 1.0, results.get(1)[10], epsilon);
-      assertEquals("f", 1.7320508075688772, results.get(2)[10], epsilon);
-      assertEquals("g", 6.0, results.get(3)[10], epsilon);
-      assertEquals("h", 2.540548991887827, results.get(4)[10], epsilon);
+      assertEquals("x", 3.0, results.get(0)[2], epsilon);
+      assertEquals("y", 1.0, results.get(1)[4], epsilon);
+      assertEquals("f", 1.7320508075688772, results.get(2)[7], epsilon);
+      assertEquals("g", 6.0, results.get(3)[4], epsilon);
+      assertEquals("h", 2.540548991887827, results.get(4)[2], epsilon);
 
     }
 

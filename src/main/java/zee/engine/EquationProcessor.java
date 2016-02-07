@@ -5,7 +5,10 @@ import zee.engine.parser.ExpressionParser;
 import zee.engine.nodes.MathNodeWrapper;
 import zee.engine.nodes.MathNode;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -294,10 +297,12 @@ public class EquationProcessor {
       // require the whole domain and configure this method to only split the
       // domain if they are not present
       boolean splittable = true;
-      for(MathNode n : outNodes)
+      for(MathNode n : outNodes) {
          splittable &= n.isSplittable();
-      if( ! splittable)
+      }
+      if( ! splittable) {
          numBlocks = 1;
+      }
 
       // need to get domain variables for variables that are parsed
       // recombine the domain if the defs are different lengths
@@ -306,34 +311,35 @@ public class EquationProcessor {
 
      DomainInterface d = new DomainParser().getDomain(domainDefs);
 
-     // error check if necessary
-     if( usesDomain && ! recombineDomain && ! d.isSameLengthDefs())
-     {
-         throw new ParseException("Can't assign domain variables with different lengths", 0);
-     }
-
-     // these three blocks are for if you're using the domain, and if you're setting explicit points or not
-      Set<String> definedVars = domainDefs.keySet();
-      if( recombineDomain && usesDomain) {
-         for(String defined : definedVars) {
-            for(MathNode n : outNodes) {
-                if(n.isStringInTree(defined))
-                    d = d.recombineVariable(defined);
+      // these blocks are for if you're using the domain, and if you're setting explicit points or not
+      // also: sort the vars when recombining so they are recombined in a deterministic order
+      List<String> definedVars = new ArrayList<>(domainDefs.keySet());
+      Collections.sort(definedVars);
+      if(usesDomain) {
+        if( recombineDomain) {
+           for(String defined : definedVars) {
+              for(MathNode n : outNodes) {
+                  if(n.isStringInTree(defined)) {
+                      d = d.recombineVariable(defined);
+                  }
+              }
+           }
+        }
+        else {
+            if( ! d.isSameLengthDefs()) {
+                throw new ParseException("Can't assign domain variables with different lengths", 0);
             }
-         }
+           for(String defined : definedVars) {
+              for(MathNode n : outNodes) {
+                  if(n.isStringInTree(defined)) {
+                     double[] v = d.getDef(defined);
+                     d = d.setVariable(defined,v);
+                  }
+              }
+           }
+        }
       }
-      if( ! recombineDomain && usesDomain ) {
-         for(String defined : definedVars) {
-            for(MathNode n : outNodes) {
-                if(n.isStringInTree(defined)) {
-                   double[] v = d.getDef(defined);
-                   d = d.setVariable(defined,v);
-                }
-            }
-         }
-      }
-      if( ! usesDomain)
-      {
+      else {
          d = d.setVariable("dummyVariableForDomainlessEvaluation",new double[]{0});
          numBlocks = 1;
       }

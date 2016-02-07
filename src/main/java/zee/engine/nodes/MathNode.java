@@ -8,10 +8,10 @@ import zee.engine.domain.DomainInterface;
 public abstract class MathNode {
   
    protected static boolean debugOutput = false;
-   protected List<MathNode> children = new ArrayList<MathNode>();
-   protected List<MathNode> parents  = new ArrayList<MathNode>();
+   protected List<MathNode> children = new ArrayList<>();
+   protected List<MathNode> parents  = new ArrayList<>();
    protected Object id = null;
-   protected HashMap<DomainInterface,double[]> cache = new HashMap<DomainInterface,double[]>();
+   protected HashMap<DomainInterface,double[]> cache = new HashMap<>();
    protected boolean splittable = true;
    
   /**
@@ -32,7 +32,7 @@ public abstract class MathNode {
    }
    
    public List<MathNode> getParentsOfType(Class c) {
-      List<MathNode> typed = new ArrayList<MathNode>();
+      List<MathNode> typed = new ArrayList<>();
       for(MathNode d : parents) {
          if(d.getClass().equals(c))
             typed.add(d);
@@ -140,7 +140,7 @@ public abstract class MathNode {
     * @return this node evaluated on the specified domain.
     */
    public final double[] evaluate(DomainInterface domain) {
-      double[] results = null;
+      double[] results;
       
       if( getParentCount() >= cacheLimit ) {
 

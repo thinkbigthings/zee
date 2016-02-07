@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package zee.engine.parser;
 
 import java.util.HashMap;
@@ -17,7 +12,7 @@ public class DomainParser {
 
    public DomainInterface getDomain(Map<String, String> domainDefs)
    {
-      Map<String, double[]> doubleDomainDefs = new HashMap<String, double[]>();
+      Map<String, double[]> doubleDomainDefs = new HashMap<>();
       for(String key : domainDefs.keySet())
       {
           String def = domainDefs.get(key);

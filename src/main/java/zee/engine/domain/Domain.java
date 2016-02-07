@@ -1,12 +1,15 @@
 package zee.engine.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.Vector;
@@ -230,10 +233,8 @@ public class Domain implements DomainInterface {
       // replicate the variables previously recombined
       // each previous variable is replicated as many times as there are 
       // elements in curVals
-      Iterator<Map.Entry<String,double[]>> prevEntries;
-      prevEntries = recombined.points.entrySet().iterator();
-      while(prevEntries.hasNext()) {
-         Map.Entry<String,double[]> entry = prevEntries.next();
+      Collection<Map.Entry<String,double[]>> definedVars = recombined.points.entrySet();
+      for(Map.Entry<String,double[]> entry : definedVars) {
          double[] p  = entry.getValue();
          double[] pr = new double[ p.length * curVals.length ];
          for(int i=0; i < curVals.length; i++) {
@@ -273,8 +274,9 @@ public class Domain implements DomainInterface {
       Domain recombined = new Domain(this);
       
       // recombine each variable in turn
-      for(int n=0; n < varNames.length; n++)
+      for(int n=0; n < varNames.length; n++) {
          recombined = recombined.recombineVariable(varNames[n]);
+      }
       
       return recombined;
    }
@@ -388,7 +390,7 @@ public class Domain implements DomainInterface {
    }
    @Override
    public Set<String> keySet() {
-      return new HashSet<String>(points.keySet());
+      return new HashSet<>(points.keySet());
    }
    
    /** this operation is not supported, Domains are immutable */
@@ -429,7 +431,7 @@ public class Domain implements DomainInterface {
     */
    @Override
    public Collection<double[]> values() {
-      return new Vector<double[]>(points.values());
+      return new Vector<>(points.values());
    }
 
     @Override
