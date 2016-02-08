@@ -4,15 +4,10 @@ import zee.engine.parser.MathString;
 import zee.engine.parser.EquationSet;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.Assert.*;
-
-import zee.engine.domain.DomainInterface;
-import zee.engine.parser.DomainParser;
 import zee.engine.parser.ExpressionParser;
 
 public class MathStringTest {

@@ -48,17 +48,15 @@ import org.apache.commons.math.linear.Array2DRowRealMatrix;
  */
 public class Domain implements DomainInterface {
    
-   private Map<String,double[]>   allDefs = null; // names to defs
-   private Map<String,double[]> points = null;  // names to values
+   private final Map<String,double[]> allDefs = new HashMap<>(); // names to defs
+   private final Map<String,double[]> points = new HashMap<>();  // names to values
    private int length = 0;
    
    /** 
     * Creates an instance of Domain. 
-    * Definition key Strings are trimmed.
     */
    public Domain(Map<String,double[]> newdefs) {
-      allDefs = new HashMap<String,double[]>(newdefs);
-      points = new HashMap<String,double[]>();
+      allDefs.putAll(newdefs);
    }
    
    /**
@@ -67,8 +65,8 @@ public class Domain implements DomainInterface {
     */
    public Domain(Domain toCopy) {
 
-      points = new HashMap<String,double[]>(toCopy.points);
-      allDefs = new HashMap<String,double[]>(toCopy.allDefs);
+      points.putAll(toCopy.points);
+      allDefs.putAll(toCopy.allDefs);
       length = toCopy.length;
 
       // replace all double[]'s with copies so the caller can later modify the passed in object
@@ -112,7 +110,7 @@ public class Domain implements DomainInterface {
       return true;
    }
    
-    @Override
+   @Override
    public List<? extends DomainInterface> splitDomain(int numBlocks) {
       
       if( numBlocks < 1 || numBlocks > length)

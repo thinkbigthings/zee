@@ -1,7 +1,7 @@
 package zee.parser;
 
-import zee.engine.parser.EquationSet;
 import java.text.ParseException;
+import zee.engine.parser.EquationSet;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
@@ -40,52 +40,37 @@ public class EquationSetTest {
    }
    */
    
-   /**
-    * Shouldn't be able to specify a function name as an argument 
-    * in another function's signature (leading to ambiguous definitions)
-    */
-   @Test
-   public void testOverlap() {
+   @Test(expected = ParseException.class)
+   public void testOverlap() throws Exception {
+       
+      // Shouldn't be able to specify a function name as an argument 
+      // in another function's signature (leading to ambiguous definitions)
       EquationSet instance = new EquationSet();
       
-      boolean caughtOverlap = false;
-      try {
-         // this is an ambiguous definition 
-         // since the domain variable overlaps a function name
-         instance.addSymbol("someName(x)","x^2");
-         instance.addSymbol("someFunction(someName)","someName+1");
-      } catch (ParseException ex) {
-         caughtOverlap = true;
-      }
-      assertTrue(caughtOverlap);
-      
-      instance = new EquationSet();
-      caughtOverlap = false;
-      try {
-         // try again with a different order
-         instance.addSymbol("someFunction(someName)","someName+1");
-         instance.addSymbol("someName(x)","x^2");
-      } catch (ParseException ex) {
-         caughtOverlap = true;
-      }
-      assertTrue(caughtOverlap);
+      // this is an ambiguous definition 
+      // since the domain variable overlaps a function name
+      instance.addSymbol("someName(x)","x^2");
+      instance.addSymbol("someFunction(someName)","someName+1");
    }
    
-   /**
-    * Test of isSymbolDefined method, of class kernel.EquationSet.
-    */
+   @Test(expected = ParseException.class)
+   public void testOverlapDifferentOrder() throws Exception {
+      
+      EquationSet instance = new EquationSet();
+
+      // try again with a different order
+      instance.addSymbol("someFunction(someName)","someName+1");
+      instance.addSymbol("someName(x)","x^2");
+   }
+   
    @Test
-   public void testIsSymbolDefined() {
+   public void testIsSymbolDefined() throws Exception {
 
       EquationSet instance = new EquationSet();
       
-      try {
-         instance.addSymbol("f( x ,y)","x+y");
-         instance.addSymbol("a","1");
-      } catch (ParseException ex) {
-         ex.printStackTrace();
-      }
-      
+      instance.addSymbol("f( x ,y)","x+y");
+      instance.addSymbol("a","1");
+
       String name = "f";
       boolean expResult = true;
       boolean result = instance.isSymbolDefined(name);
@@ -103,21 +88,13 @@ public class EquationSetTest {
       
    }
 
-   /**
-    * Test of getArguments method, of class kernel.EquationSet.
-    */
    @Test
-   public void testGetArguments() {
+   public void testGetArguments() throws Exception {
 
       String symbol = "f";
       EquationSet instance = new EquationSet();
-      
-      try {
-         instance.addSymbol("f(x, y)","x+y");
-         instance.addSymbol("a","1");
-      } catch (ParseException ex) {
-         ex.printStackTrace();
-      }
+      instance.addSymbol("f(x, y)","x+y");
+      instance.addSymbol("a","1");
       
       String[] expResult = new String[]{"x","y"};
       String[] result = instance.getArguments(symbol);
@@ -131,7 +108,7 @@ public class EquationSetTest {
    }
 
    @Test
-   public void testMetadata() {
+   public void testMetadata() throws Exception {
 
       Map<String,String> linear = new HashMap<>();
       linear.put("INTERPOLATION", "LINEAR");
@@ -139,32 +116,22 @@ public class EquationSetTest {
       
       String symbol = "f";
       EquationSet instance = new EquationSet();
-      try {
-         instance.addSymbol("f(x)","[1 1; 2 2; 3 3]", linear);
-      } catch (ParseException ex) {
-         ex.printStackTrace();
-      }
+
+      instance.addSymbol("f(x)","[1 1; 2 2; 3 3]", linear);
       
       String expResult = "LINEAR";
-      String result = instance.getMetadata(symbol).get("INTERPOLATION").toString();
+      String result = instance.getMetadata(symbol).get("INTERPOLATION");
       assertEquals(expResult, result);
       
    }
    
-   /**
-    * Test of getDefinition method, of class kernel.EquationSet.
-    */
    @Test
-   public void testGetDefinition() {
+   public void testGetDefinition() throws Exception {
 
       String symbol = "f";
       EquationSet instance = new EquationSet();
-      try {
-         instance.addSymbol("f(x , y)","x+y");
-         instance.addSymbol("a","1");
-      } catch (ParseException ex) {
-         ex.printStackTrace();
-      }
+      instance.addSymbol("f(x , y)","x+y");
+      instance.addSymbol("a","1");
       
       String expResult = "x+y";
       String result = instance.getDefinition(symbol);
@@ -182,21 +149,14 @@ public class EquationSetTest {
       
    }
 
-   /**
-    * Test of addSymbol method, of class kernel.EquationSet.
-    */
    @Test
-   public void testAddSymbol() {
+   public void testAddSymbol() throws Exception {
 
       String name = "";
       String def = "";
       EquationSet instance = new EquationSet();
-      try {
-         
-         instance.addSymbol("f(x,y)","x+y");
-      } catch (ParseException ex) {
-         ex.printStackTrace();
-      }
+      instance.addSymbol("f(x,y)","x+y");
+
       assertTrue(instance.isSymbolDefined("f"));
       assertTrue(instance.getDefinition("f").equals("x+y"));
 

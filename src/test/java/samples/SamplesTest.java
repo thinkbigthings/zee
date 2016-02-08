@@ -21,18 +21,18 @@ import zee.engine.parser.MatrixParser;
 public class SamplesTest {
 
    final private double epsilon = 10E-10;
-   private Map<String,String> eqs = new HashMap<String,String>();
-   private EquationProcessor k;
-   private List<String> cols = new ArrayList<String>();
-   private Map<String,String> defs = new HashMap<String,String>();
+   private Map<String,String> eqs = new HashMap<>();
+   private EquationProcessor k = null;
+   private List<String> cols = new ArrayList<>();
+   private Map<String,String> defs = new HashMap<>();
 
    @Before
    public void setupForEachMethod()
    {
-        eqs = new HashMap<String,String>();
+        eqs = new HashMap<>();
         k = null;
-        cols = new ArrayList<String>();
-        defs = new HashMap<String,String>();
+        cols = new ArrayList<>();
+        defs = new HashMap<>();
    }
 
    @Test
