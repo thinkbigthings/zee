@@ -7,7 +7,6 @@ import zee.engine.parser.ExpressionParser;
 import zee.engine.parser.EquationSet;
 import zee.engine.domain.DomainInterface;
 import zee.engine.nodes.MathNode;
-import java.util.Hashtable;
 
 import zee.engine.nodes.NumberNode;
 import zee.engine.nodes.VariableNode;
@@ -149,7 +148,7 @@ public class ExpressionParserTest {
     @Test
     public void testParse() throws ParseException {
 
-        Hashtable<String, String> meta = new Hashtable<String, String>();
+        Map<String, String> meta = new HashMap<>();
         meta.put("INDEPENDANT VARIABLE", "x");
 
         EquationSet eqs = new EquationSet();
@@ -220,11 +219,11 @@ public class ExpressionParserTest {
     public void testMetadata() throws ParseException {
 
 
-        Hashtable<String, String> linearMetadata = new Hashtable<String, String>();
+        Map<String, String> linearMetadata = new HashMap<>();
         linearMetadata.put("INTERPOLATION", "Linear");
         linearMetadata.put("INDEPENDANT VARIABLE", "x");
 
-        Hashtable<String, String> cubicMetadata = new Hashtable<String, String>();
+        Map<String, String> cubicMetadata = new HashMap<>();
         cubicMetadata.put("INTERPOLATION", "Cubic");
         cubicMetadata.put("INDEPENDANT VARIABLE", "x");
 
@@ -239,7 +238,7 @@ public class ExpressionParserTest {
         eqs.addSymbol("squareCubic(x)", def, cubicMetadata);
         ExpressionParser parser = new ExpressionParser(eqs);
 
-        Hashtable<String, String> domainDefs = new Hashtable<String, String>();
+        Map<String, String> domainDefs = new HashMap<>();
         domainDefs.put("x", "[-1.0, -0.8, -0.5, 0, 0.5, 0.8, 1]");
         DomainInterface d = new DomainParser().getDomain(domainDefs);
         d = d.recombineVariable("x");
@@ -260,7 +259,7 @@ public class ExpressionParserTest {
     @Test
     public void testEvaluate() throws ParseException {
 
-        Hashtable<String, String> defs = new Hashtable<String, String>();
+        Map<String, String> defs = new HashMap<>();
         defs.put("x", "[1:10]");
         defs.put("y", "[1:10]");
         DomainInterface d = new DomainParser().getDomain(defs);

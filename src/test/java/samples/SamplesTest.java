@@ -10,7 +10,6 @@ import static java.lang.Math.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
@@ -313,9 +312,9 @@ public class SamplesTest {
       eqs.put("xSquaredLinearData(x)","[-3,9;-2,4;-1,1;0,0;1,1;2,4;3,9]");
       eqs.put("xSquaredCubicData(x)", "[-3,9;-2,4;-1,1;0,0;1,1;2,4;3,9]");
 
-      Hashtable<String,Hashtable<String,String>> meta = new Hashtable<String,Hashtable<String,String>>();
-      Hashtable<String,String> metaForLinearFunction = new Hashtable<String,String>();
-      Hashtable<String,String> metaForCubicFunction = new Hashtable<String,String>();
+      Map<String, Map<String, String>> meta = new HashMap<>();
+      Map<String,String> metaForLinearFunction = new HashMap<>();
+      Map<String,String> metaForCubicFunction = new HashMap<>();
       metaForCubicFunction.put(MatrixParser.INTERPOLATION_TYPE, "Cubic");
       metaForLinearFunction.put(MatrixParser.INTERPOLATION_TYPE, "Linear");
       meta.put("xSquaredLinearData(x)", metaForLinearFunction);
@@ -348,9 +347,9 @@ public class SamplesTest {
          }
       }
 
-      Hashtable<String,Hashtable<String,String>> meta = new Hashtable<String,Hashtable<String,String>>();
-      Hashtable<String,String> metaForLinearFunction = new Hashtable<String,String>();
-      Hashtable<String,String> metaForCubicFunction = new Hashtable<String,String>();
+      Map<String, Map<String, String>> meta = new HashMap<>();
+      Map<String,String> metaForLinearFunction = new HashMap<>();
+      Map<String,String> metaForCubicFunction = new HashMap<>();
       metaForCubicFunction.put(MatrixParser.INTERPOLATION_TYPE, "Cubic");
       metaForLinearFunction.put(MatrixParser.INTERPOLATION_TYPE, "Linear");
       meta.put("xSquaredPlusCosYLinear(x,y)", metaForLinearFunction);

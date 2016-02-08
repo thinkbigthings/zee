@@ -4,15 +4,13 @@ import zee.engine.parser.MathString;
 import zee.engine.parser.EquationSet;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.Assert.*;
 
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import zee.engine.domain.DomainInterface;
 import zee.engine.parser.DomainParser;
 import zee.engine.parser.ExpressionParser;
@@ -141,7 +139,7 @@ public class MathStringTest {
     @Test
     public void testFindOperator() {
 
-        Vector<String> t1 = new Vector<String>();
+        List<String> t1 = new ArrayList<>();
 
         t1.add("a");
         t1.add("*");
@@ -189,11 +187,11 @@ public class MathStringTest {
     @Test
     public void testSplit() throws ParseException {
 
-        Hashtable<String, String> defs = new Hashtable<String, String>();
-        defs.put("x", "[1:10]");
-        defs.put("y", "[1:10]");
-        DomainInterface d = new DomainParser().getDomain(defs);
-        d = d.recombineVariables(new String[]{"x", "y"});
+//        Map<String, String> defs = new HashMap<>();
+//        defs.put("x", "[1:10]");
+//        defs.put("y", "[1:10]");
+//        DomainInterface d = new DomainParser().getDomain(defs);
+//        d.recombineVariables(new String[]{"x", "y"});
 
         EquationSet eqs = new EquationSet();
         eqs.addSymbol("f(x, y)", " x +y");

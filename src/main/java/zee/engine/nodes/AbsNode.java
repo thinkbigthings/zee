@@ -1,6 +1,5 @@
 package zee.engine.nodes;
 
-import java.text.ParseException;
 import zee.engine.domain.DomainInterface;
 
 public class AbsNode extends MathNode {

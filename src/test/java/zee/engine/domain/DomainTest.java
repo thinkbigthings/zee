@@ -1,24 +1,23 @@
 package zee.engine.domain;
 
 import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
-import java.util.Vector;
-import junit.framework.Assert;
 import zee.engine.parser.DomainParser;
 
 public class DomainTest {
    
-   private Hashtable<String,String> defs;
+   private Map<String,String> defs;
    private DomainInterface d;
 
 
    @Before
    public void createDefs() {
-      defs = new Hashtable<String,String>();
+      defs = new HashMap<>();
       defs.put("x","[1:3]");
       defs.put("y","[4 5]");
       defs.put("z","[6]");
@@ -102,7 +101,7 @@ public class DomainTest {
          d = d.recombineVariable("x");
       } catch(Exception e) { assertTrue(false); }
 
-      Vector<? extends DomainInterface> ds = d.splitDomain(1);
+      List<? extends DomainInterface> ds = d.splitDomain(1);
       assertTrue(ds.size() == 1);
       assertArrayEquals(ds.get(0).get("x"),new double[]{1,2,3},0.0001);
       
@@ -117,7 +116,7 @@ public class DomainTest {
       assertArrayEquals(ds.get(1).get("x"),new double[]{2},0.0001);
       assertArrayEquals(ds.get(2).get("x"),new double[]{3},0.0001);
       
-      Hashtable<String,String> defs2 = new Hashtable<String,String>();
+      Map<String,String> defs2 = new HashMap<>();
       defs2.put("x","[1:0.001:100]");
       d = new DomainParser().getDomain(defs2);
      d = d.recombineVariable("x");

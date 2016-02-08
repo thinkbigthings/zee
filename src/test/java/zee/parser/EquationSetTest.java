@@ -2,8 +2,8 @@ package zee.parser;
 
 import zee.engine.parser.EquationSet;
 import java.text.ParseException;
-import java.util.Hashtable;
-import org.junit.Assert;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -133,7 +133,7 @@ public class EquationSetTest {
    @Test
    public void testMetadata() {
 
-      Hashtable<String,String> linear = new Hashtable<String,String>();
+      Map<String,String> linear = new HashMap<>();
       linear.put("INTERPOLATION", "LINEAR");
       linear.put("INDEPENDANT VARIABLE", "x");
       

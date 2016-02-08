@@ -7,14 +7,10 @@ import zee.engine.nodes.MathNode;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
 import zee.engine.domain.DomainInterface;
 import zee.engine.parser.DomainParser;
 
@@ -100,14 +96,14 @@ public class EquationProcessor {
     * @see EquationSet
     */
    public EquationProcessor( Map<String,String> defs,
-                  Hashtable<String,Hashtable<String,String>> meta
+                  Map<String,Map<String,String>> meta
                  ) throws ParseException 
    {
        for(Map.Entry<String,String> entry : defs.entrySet())
        {
          String key = entry.getKey();
          String def = entry.getValue();
-         Hashtable<String,String> data = meta.get(key);
+         Map<String,String> data = meta.get(key);
          eqs.addSymbol(key, def, data);        
       }
    }
@@ -128,7 +124,7 @@ public class EquationProcessor {
    public static double evaluateExpression(String expression) throws ParseException {
        EquationProcessor k = new EquationProcessor();
        List<String> output = Arrays.asList(expression);
-       Vector<double[]> results = k.evaluate(new HashMap<String,String>(), output);
+       List<double[]> results = k.evaluate(new HashMap<String,String>(), output);
        return results.get(0)[0];
    }
    /*
@@ -184,7 +180,7 @@ public class EquationProcessor {
     * @return
     * @throws ParseException
     */
-   public Vector<double[]> evaluate(Map<String,String> domainDefs, List<String> outputCols) throws ParseException {
+   public List<double[]> evaluate(Map<String,String> domainDefs, List<String> outputCols) throws ParseException {
       return evaluate(domainDefs,outputCols,1,true);
    }
 
@@ -248,18 +244,18 @@ public class EquationProcessor {
     * @return the results of the computation. Each element of the returned
     * Vector corresponds to an element from outputCols. 
     */
-   public Vector<double[]> evaluate( Map<String,String> domainDefs,
+   public List<double[]> evaluate( Map<String,String> domainDefs,
                                      List<String> outputCols,
                                      int numBlocks,
                                      boolean recombineDomain)  throws ParseException
    {
 
       
-      Vector<double[]> output = new Vector<double[]>();
+      List<double[]> output = new ArrayList<>();
       
       // pre-parse all the required nodes so evaluation time will be more even
       // wrap output in new nodes so parent-based caching is more accurate
-      Vector<MathNode> outNodes = new Vector<MathNode>();
+      List<MathNode> outNodes = new ArrayList<>();
       ExpressionParser parser = new ExpressionParser(eqs);
       for(String col : outputCols) {
          MathNode outWrapper = new MathNodeWrapper(null);
@@ -279,7 +275,7 @@ public class EquationProcessor {
          // this just catches variables
          // don't worry, functions that don't exist in the eqset are caught
          // when the output nodes are parsed above
-         Vector varNodes = parser.getReferencedVariables(n);
+         List varNodes = parser.getReferencedVariables(n);
          usesDomain |= varNodes.size() > 0;
          for(Object var : varNodes) {
             boolean defined = domainDefs.keySet().contains(var);
@@ -352,7 +348,7 @@ public class EquationProcessor {
       }
       
       // set up the split domain and the final output storage
-      Vector<? extends DomainInterface> domainBlocks = d.splitDomain(numBlocks);
+      List<? extends DomainInterface> domainBlocks = d.splitDomain(numBlocks);
       for(int c=0; c < outputCols.size(); c++)
          output.add(new double[d.getLength()]);
      

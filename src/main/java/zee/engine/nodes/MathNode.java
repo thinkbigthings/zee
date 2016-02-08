@@ -3,6 +3,7 @@ package zee.engine.nodes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import zee.engine.domain.DomainInterface;
 
 public abstract class MathNode {
@@ -11,7 +12,7 @@ public abstract class MathNode {
    protected List<MathNode> children = new ArrayList<>();
    protected List<MathNode> parents  = new ArrayList<>();
    protected Object id = null;
-   protected HashMap<DomainInterface,double[]> cache = new HashMap<>();
+   protected Map<DomainInterface,double[]> cache = new HashMap<>();
    protected boolean splittable = true;
    
   /**

@@ -1,7 +1,7 @@
 package zee.engine.domain;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 /**
  *
@@ -45,6 +45,6 @@ public interface DomainInterface extends Map<String, double[]> {
 
     DomainInterface setVariable(String var, double[] data);
 
-    Vector<? extends DomainInterface> splitDomain(int numBlocks);
+    List<? extends DomainInterface> splitDomain(int numBlocks);
 
 }

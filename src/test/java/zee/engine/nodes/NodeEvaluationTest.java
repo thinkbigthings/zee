@@ -11,7 +11,6 @@ import zee.engine.parser.EquationSet;
 import zee.engine.domain.DomainInterface;
 
 import java.text.ParseException;
-import java.util.Hashtable;
 import org.junit.Test;
 import zee.engine.EquationProcessor;
 import static org.junit.Assert.*;

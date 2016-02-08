@@ -6,13 +6,11 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.Vector;
 import org.apache.commons.math.linear.Array2DRowRealMatrix;
 
 /**
@@ -115,7 +113,7 @@ public class Domain implements DomainInterface {
    }
    
     @Override
-   public Vector<? extends DomainInterface> splitDomain(int numBlocks) {
+   public List<? extends DomainInterface> splitDomain(int numBlocks) {
       
       if( numBlocks < 1 || numBlocks > length)
       {
@@ -123,7 +121,7 @@ public class Domain implements DomainInterface {
           throw new IllegalArgumentException(message);
       }
       
-      Vector<Domain> blocks = new Vector<Domain>();
+      List<Domain> blocks = new ArrayList<>();
 
       int blockSize = Math.round((float)Math.ceil( ((float)length)/((float)numBlocks) ));
       int startIndex = 0;
@@ -431,7 +429,7 @@ public class Domain implements DomainInterface {
     */
    @Override
    public Collection<double[]> values() {
-      return new Vector<>(points.values());
+      return new ArrayList<>(points.values());
    }
 
     @Override

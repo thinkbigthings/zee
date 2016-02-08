@@ -3,12 +3,12 @@ package zee.engine.parser;
 import zee.engine.nodes.MathNodeFactory;
 import zee.engine.nodes.MathNode;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import zee.engine.nodes.DomainTransformation;
 import zee.engine.nodes.VariableNode;
@@ -22,7 +22,7 @@ import zee.engine.nodes.VariableNode;
  */
 public class ExpressionParser implements ParserStrategy {
 
-    private Hashtable<SymbolMetaKey, MathNode> keysToNode = new Hashtable<SymbolMetaKey, MathNode>();
+    private Map<SymbolMetaKey, MathNode> keysToNode = new HashMap<>();
     private EquationSet equations; // no setter methods are called in this class
     private MathNodeFactory factory = new MathNodeFactory();
     private ParserStrategy matrixParser = null;
@@ -75,7 +75,7 @@ public class ExpressionParser implements ParserStrategy {
      * @throws java.text.ParseException
      */
     public void parseAllSymbols() throws ParseException {
-        Vector<String> symbols = equations.getAllSymbols();
+        List<String> symbols = equations.getAllSymbols();
         for (String symbol : symbols) {
             parse(symbol, equations.getMetadata(symbol));
         }
@@ -238,9 +238,9 @@ public class ExpressionParser implements ParserStrategy {
      * this method also returns that DomainTransformation's
      * default required arguments.
      */
-    public Vector<Object> getReferencedVariables(MathNode parent) {
+    public List<Object> getReferencedVariables(MathNode parent) {
 
-        Vector<Object> results = new Vector<Object>();
+        List<Object> results = new ArrayList<Object>();
 
         // we found a variable, get it and return
         if (parent instanceof VariableNode) {

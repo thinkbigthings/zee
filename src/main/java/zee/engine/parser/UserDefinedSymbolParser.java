@@ -4,18 +4,18 @@ package zee.engine.parser;
 import zee.engine.nodes.MathNodeFactory;
 import zee.engine.nodes.MathNode;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import zee.engine.nodes.DomainTransformation;
 import zee.engine.nodes.VariableNode;
 
 public class UserDefinedSymbolParser implements ParserStrategy {
 
-    private EquationSet equations; // no setter methods are called in this class
-    private ParserStrategy mainParser;
-    private MathNodeFactory factory = new MathNodeFactory();
+    private final EquationSet equations; // no setter methods are called in this class
+    private final ParserStrategy mainParser;
+    private final MathNodeFactory factory = new MathNodeFactory();
     
     public UserDefinedSymbolParser(EquationSet eqset, ParserStrategy ps) {
         equations = eqset;
@@ -66,7 +66,7 @@ public class UserDefinedSymbolParser implements ParserStrategy {
               // could be a matrix, piecewise, or expression
               String symbol = MathString.getFunctionName(toParse);
               String[] args = MathString.getFunctionArgs(toParse);
-              Hashtable<String,String> newmeta = equations.getMetadata(symbol);
+              Map<String,String> newmeta = equations.getMetadata(symbol);
               String def = equations.getDefinition(symbol);
 
               if(factory.isOperatorDefined(symbol)) {
@@ -110,8 +110,8 @@ public class UserDefinedSymbolParser implements ParserStrategy {
                  // to check the definition, you'll need the variables defined
                  // in this definition directly (ie don't descend into any 
                  // domain transformation nodes)
-                 Vector<Object> variables = getReferencedVariables(parent);
-                 Vector<String> requiredVars = new Vector<String>(Arrays.asList(defArgs));
+                 List<Object> variables = getReferencedVariables(parent);
+                 List<String> requiredVars = new ArrayList<String>(Arrays.asList(defArgs));
 
                  // Make sure variables used in the definition
                  // are all defined in the signature
@@ -170,9 +170,9 @@ public class UserDefinedSymbolParser implements ParserStrategy {
     * this method also returns that DomainTransformation's
     * default required arguments.
     */
-   public Vector<Object> getReferencedVariables(MathNode parent) {
+   public List<Object> getReferencedVariables(MathNode parent) {
       
-      Vector<Object> results = new Vector<Object>();
+      List<Object> results = new ArrayList<Object>();
       
       // we found a variable, get it and return
       if(parent instanceof VariableNode ) {

@@ -1,6 +1,7 @@
 package zee.engine.nodes;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import zee.engine.domain.DomainInterface;
 
 /**
@@ -23,7 +24,7 @@ import zee.engine.domain.DomainInterface;
  */
 public class DomainTransformation extends MathNode {
    
-   private Vector<String> names = new Vector<String>();
+   private List<String> names = new ArrayList<String>();
    
    /** Creates a new instance of DomainTransformation */
    public DomainTransformation(Object id) {

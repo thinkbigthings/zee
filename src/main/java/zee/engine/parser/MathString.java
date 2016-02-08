@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,7 +237,7 @@ public class MathString {
                 String err = "Can't parse around multiple colons: " + toParse;
                 throw new NumberFormatException(err);
             }
-            Vector<BigDecimal> values = new Vector<BigDecimal>();
+            List<BigDecimal> values = new ArrayList<>();
             for (BigDecimal cur = min; cur.compareTo(max) <= 0; cur = cur.add(step)) {
                 values.add(cur);
             }
@@ -334,7 +333,7 @@ public class MathString {
                 args = new String[]{call};
             } else {
                 // parse around commas that aren't inside parens
-                Vector<String> argv = new Vector<String>();
+                List<String> argv = new ArrayList<>();
                 int curIndex = 0;
                 for (int i = 1; i < call.length(); i++) {
                     if (call.substring(i, i + 1).equals("(")) {

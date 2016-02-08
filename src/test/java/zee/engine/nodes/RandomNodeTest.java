@@ -1,8 +1,9 @@
 package zee.engine.nodes;
 
+import java.util.HashMap;
+import java.util.Map;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import java.util.Hashtable;
 import zee.engine.parser.EquationSet;
 import zee.engine.parser.ExpressionParser;
 import zee.engine.domain.DomainInterface;
@@ -31,7 +32,7 @@ public class RandomNodeTest {
       MathNode rand1   = parser.parse("rand(1)");
       MathNode random1 = parser.parse("random(1)");
 
-      Hashtable<String,String> defs = new Hashtable<String,String>();
+      Map<String,String> defs = new HashMap<>();
       defs.put("x","1");
       DomainInterface d = new DomainParser().getDomain(defs);
       d = d.recombineVariable("x");

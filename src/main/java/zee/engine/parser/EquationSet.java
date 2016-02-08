@@ -1,13 +1,14 @@
 package zee.engine.parser;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Vector;
 
 /**
  * Given key "f(x,y)=x+y", symbol is f, arguments are [x,y], definition is x+y,
@@ -16,35 +17,34 @@ import java.util.Vector;
  */
 public final class EquationSet {
    
-   private Vector<String> symbols = new Vector<String>();
-   private Hashtable<String,String[]> arguments = new Hashtable<String,String[]>();
-   private Hashtable<String,String> definitions = new Hashtable<String,String>();
-   private Hashtable<String,Hashtable<String,String>> meta;
+   private final List<String> symbols = new ArrayList<>();
+   private final Map<String, String[]> arguments = new HashMap<>();
+   private final Map<String, String> definitions = new HashMap<>();
+   private final Map<String, Map<String,String>> meta = new HashMap<>();;
    
    /** Creates a new instance of EquationSet */
    public EquationSet() {
-      // map symbols to metadata
-      meta = new Hashtable<String,Hashtable<String,String>>();
+
    }
    
-   public EquationSet(Hashtable<String,String> symbolsAndDefs) throws ParseException {
-      for(String key : symbolsAndDefs.keySet())
+   public EquationSet(Map<String,String> symbolsAndDefs) throws ParseException {
+      for(String key : symbolsAndDefs.keySet()) {
          addSymbol(key, symbolsAndDefs.get(key));
-      meta = new Hashtable<String,Hashtable<String,String>>();
+      }
    }
 
-   public Vector<String> getAllDomainVariables() {
-      TreeSet<String> d = new TreeSet<String>();
+   public List<String> getAllDomainVariables() {
+      Set<String> d = new TreeSet<>();
       for(String symbol : symbols) {
          String[] args = arguments.get(symbol);
          for(int i=0; i < args.length; i++)
             d.add(args[i]);
       }
-      return new Vector<String>(d);
+      return new ArrayList<>(d);
    }
 
-   public Vector<String> getAllSignatures() {
-      Vector<String> sigs = new Vector<String>();
+   public List<String> getAllSignatures() {
+      List<String> sigs = new ArrayList<>();
       for(String name : symbols)
          sigs.add(getSignature(name));
       return sigs;
@@ -60,8 +60,8 @@ public final class EquationSet {
       return symbols.contains(name);
    }
    
-   public Vector<String> getAllSymbols() {
-      return new Vector<String>(symbols);
+   public List<String> getAllSymbols() {
+      return new ArrayList<>(symbols);
    }
    
    /**
@@ -114,18 +114,18 @@ public final class EquationSet {
     * Metadata is a set of key/value strings for each function
     * 
     * @param symbol
-    * @return a hashtable of metadata
+    * @return a Map of metadata
     */
-   public Hashtable<String,String> getMetadata(String symbol) {
-      Hashtable<String,String> values = meta.get(symbol);
+   public Map<String,String> getMetadata(String symbol) {
+      Map<String,String> values = meta.get(symbol);
       if( values == null)
-          values = new Hashtable<String,String>();
+          values = new HashMap<>();
       return values;
    }
    
    public String getMetadata(String symbol, String key) {
       String value = null;
-      Hashtable<String,String> data = meta.get(symbol);
+      Map<String,String> data = meta.get(symbol);
       if(data != null)
          value = data.get(key);
       return value;
@@ -133,7 +133,7 @@ public final class EquationSet {
    
    public void addSymbol(   String signature,
                             String def, 
-                            Hashtable<String,String> metaData) throws ParseException 
+                            Map<String,String> metaData) throws ParseException 
    {
       
       String symbol = MathString.getFunctionName(signature.trim());
@@ -219,7 +219,7 @@ public final class EquationSet {
       if(signature.indexOf("(") != -1)
          argArray = MathString.getFunctionArgs(signature);
 
-        Hashtable<String, String> symMeta = getMetadata(sym);
+        Map<String, String> symMeta = getMetadata(sym);
         if (argArray.length == 1) {
             symMeta.put(MatrixParser.INDEPENDANT_VARIABLE, argArray[0]);
         }

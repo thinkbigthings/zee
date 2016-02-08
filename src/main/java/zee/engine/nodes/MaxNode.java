@@ -1,8 +1,9 @@
 
 package zee.engine.nodes;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.List;
 import zee.engine.domain.DomainInterface;
 
 public class MaxNode extends MathNode {
@@ -39,7 +40,7 @@ public class MaxNode extends MathNode {
       }
       else {
          v1 = getChild(0).evaluate(domain);
-         Vector<double[]> args = new Vector<double[]>();
+         List<double[]> args = new ArrayList<>();
          for(int i=0; i<getChildCount(); i++)
             args.add(getChild(i).evaluate(domain));
          
