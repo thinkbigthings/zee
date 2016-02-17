@@ -4,9 +4,8 @@ package zee.engine.parser;
 import zee.engine.nodes.MathNode;
 import java.text.ParseException;
 import java.util.Map;
-import org.apache.commons.math.MathException;
-import org.apache.commons.math.linear.Array2DRowRealMatrix;
-import org.apache.commons.math.linear.RealMatrix;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
 import zee.engine.nodes.NumericFunction1D;
 import zee.engine.nodes.NumericFunction2D;
 import zee.engine.nodes.interpolators.Interpolation;
@@ -59,9 +58,6 @@ public class MatrixParser implements ParserStrategy {
         catch(NumberFormatException nfe) {
            String message = "Can't parse matrix: " + nfe.getMessage();
            throw new ParseException(message, 0);
-        }
-        catch(MathException iae) {
-           throw new ParseException(iae.getMessage(), 0);
         }
        
        return node;

@@ -1,9 +1,8 @@
 package zee.engine.nodes;
 
 import java.util.Arrays;
-import org.apache.commons.math.MathException;
-import org.apache.commons.math.linear.Array2DRowRealMatrix;
-import org.apache.commons.math.linear.RealMatrix;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
 import zee.engine.domain.DomainInterface;
 import zee.engine.nodes.interpolators.Interpolation;
 import zee.engine.nodes.interpolators.PolynomialSpline2D;
@@ -29,7 +28,7 @@ public class NumericFunction2D extends MathNode {
     * The first row/column of the double[][] are "headers" defining the domain of the grid.
     * The subsequent rows/columns are the values at the intersection of each "header" value.
     */
-   public NumericFunction2D(Object id, double[][] data, Interpolation.TYPE type, String x1Name, String x2Name) throws MathException
+   public NumericFunction2D(Object id, double[][] data, Interpolation.TYPE type, String x1Name, String x2Name) 
    {
       super(id);
       matrix = new Array2DRowRealMatrix(data, true);

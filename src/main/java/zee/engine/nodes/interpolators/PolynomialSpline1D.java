@@ -1,22 +1,17 @@
 
 package zee.engine.nodes.interpolators;
 
-import org.apache.commons.math.FunctionEvaluationException;
-import org.apache.commons.math.MathException;
-import org.apache.commons.math.analysis.UnivariateRealFunction;
-import org.apache.commons.math.analysis.interpolation.LinearInterpolator;
-import org.apache.commons.math.analysis.interpolation.SplineInterpolator;
-import org.apache.commons.math.analysis.interpolation.UnivariateRealInterpolator;
+import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.analysis.interpolation.LinearInterpolator;
+import org.apache.commons.math3.analysis.interpolation.SplineInterpolator;
+import org.apache.commons.math3.analysis.interpolation.UnivariateInterpolator;
 
-/**
- *
- */
-public class PolynomialSpline1D implements UnivariateRealFunction, VectorFunction {
+public class PolynomialSpline1D implements UnivariateFunction, VectorFunction {
 
-    UnivariateRealFunction spline;
-    UnivariateRealInterpolator interpolator;
+    UnivariateFunction spline;
+    UnivariateInterpolator interpolator;
 
-    public PolynomialSpline1D(double x[], double y[], Interpolation.TYPE type) throws IllegalArgumentException, MathException {
+    public PolynomialSpline1D(double x[], double y[], Interpolation.TYPE type) throws IllegalArgumentException {
 
         switch( type )
         {
@@ -34,7 +29,7 @@ public class PolynomialSpline1D implements UnivariateRealFunction, VectorFunctio
     }
     
     @Override
-    public double value(double v) throws FunctionEvaluationException {
+    public double value(double v) {
         return spline.value(v);
     }
 
@@ -42,8 +37,8 @@ public class PolynomialSpline1D implements UnivariateRealFunction, VectorFunctio
     public double[] value(double[] v)  {
         double[] result = new double[v.length];
         for(int i=0; i < v.length; i++) {
-            try{ result[i] = spline.value(v[i]); }
-            catch(FunctionEvaluationException e) {result[i] = Double.NaN; }
+            result[i] = spline.value(v[i]);
+//            catch(FunctionEvaluationException e) {result[i] = Double.NaN; }
         }
         return result;
 
