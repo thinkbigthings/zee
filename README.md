@@ -41,5 +41,5 @@ List<double[]> output = k.evaluate(defs,cols);
 
 ```
 
-For a complete set of examples, see "sample" package in the unit tests, and the zee-samples project. 
+For a complete set of examples, see "sample" package in the unit tests, and the examples project. 
 
