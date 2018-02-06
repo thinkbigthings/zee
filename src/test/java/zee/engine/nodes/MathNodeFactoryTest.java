@@ -1,8 +1,8 @@
 package zee.engine.nodes;
 
-import java.text.ParseException;
-
 import org.junit.Test;
+import zee.engine.parser.ParseException;
+
 import static org.junit.Assert.*;
 
 public class MathNodeFactoryTest {

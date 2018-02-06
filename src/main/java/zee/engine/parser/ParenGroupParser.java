@@ -3,7 +3,6 @@
 package zee.engine.parser;
 
 import zee.engine.nodes.MathNode;
-import java.text.ParseException;
 import java.util.Map;
 
 

@@ -2,7 +2,6 @@
 package zee.engine.parser;
 
 import zee.engine.nodes.MathNode;
-import java.text.ParseException;
 import java.util.Map;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -31,7 +30,7 @@ public class MatrixParser implements ParserStrategy {
            RealMatrix matrix = new Array2DRowRealMatrix(MathString.toDoubleTable(toParse),true);
 
            if(matrix.getColumnDimension() <= 1 || matrix.getRowDimension() <= 1) {
-               throw new ParseException("Not enough data is defined", 0);
+               throw new ParseException("Not enough data is defined");
            }
            if(matrix.getColumnDimension() == 2) {
                 String indVar = meta.get(INDEPENDANT_VARIABLE);
@@ -57,7 +56,7 @@ public class MatrixParser implements ParserStrategy {
         }
         catch(NumberFormatException nfe) {
            String message = "Can't parse matrix: " + nfe.getMessage();
-           throw new ParseException(message, 0);
+           throw new ParseException(message);
         }
        
        return node;

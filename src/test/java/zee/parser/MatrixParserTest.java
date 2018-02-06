@@ -1,11 +1,11 @@
 
 package zee.parser;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 import zee.engine.parser.MatrixParser;
+import zee.engine.parser.ParseException;
 
 public class MatrixParserTest {
 

@@ -1,10 +1,11 @@
 package zee.parser;
 
-import java.text.ParseException;
 import zee.engine.parser.EquationSet;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
+import zee.engine.parser.ParseException;
+
 import static org.junit.Assert.*;
 
 public class EquationSetTest {

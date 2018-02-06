@@ -3,7 +3,6 @@ package zee.engine.parser;
 
 import zee.engine.nodes.MathNodeFactory;
 import zee.engine.nodes.MathNode;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +52,7 @@ public class UserDefinedSymbolParser implements ParserStrategy {
     * 
     * @return a MathNode representing this string
     * 
-    * @throws java.text.ParseException
+    * @throws ParseException
     */
    @Override
     public MathNode parse(String toParse, Map<String, String> meta) throws ParseException {
@@ -81,7 +80,7 @@ public class UserDefinedSymbolParser implements ParserStrategy {
                  String err = symbol + " has " + args.length 
                          + " arguments instead of  " + reqArgLength
                          + " as defined by its signature";
-                 throw new ParseException(err,0);
+                 throw new ParseException(err);
               }
 
               // parent is the defined function in equation set
@@ -119,7 +118,7 @@ public class UserDefinedSymbolParser implements ParserStrategy {
                     variables.removeAll(requiredVars);
                     String err = symbol + "'s definition "
                             + "uses undefined variables: " + variables;
-                    throw new ParseException(err,0);
+                    throw new ParseException(err);
                  }
 
 
@@ -129,7 +128,7 @@ public class UserDefinedSymbolParser implements ParserStrategy {
                     requiredVars.removeAll(variables);
                     String err = symbol + "'s definition "
                             + "does not use arguments: " + requiredVars;
-                    throw new ParseException(err,0);
+                    throw new ParseException(err);
                  }
               }
 

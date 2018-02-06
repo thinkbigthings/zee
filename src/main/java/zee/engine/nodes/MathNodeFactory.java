@@ -1,12 +1,13 @@
 package zee.engine.nodes;
 
-import java.text.ParseException;
+
+import zee.engine.parser.ParseException;
 
 public class MathNodeFactory {
 
    public MathNodeFactory() {  }
    
-   public MathNode createNode(final Object id, final String input) throws ParseException 
+   public MathNode createNode(final Object id, final String input) throws ParseException
    {
       String inputLowerCase = input.toLowerCase();
       switch(inputLowerCase) {
@@ -119,7 +120,7 @@ public class MathNodeFactory {
          case "csc": 
             return new CscNode(id);
          default:
-            throw new ParseException("Operation is not defined: " + input, 0);
+            throw new ParseException("Operation is not defined: " + input);
       }
    }
 

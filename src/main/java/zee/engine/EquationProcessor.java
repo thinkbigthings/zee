@@ -1,18 +1,14 @@
 package zee.engine;
 
+import zee.engine.domain.DomainInterface;
+import zee.engine.nodes.MathNode;
+import zee.engine.nodes.MathNodeWrapper;
+import zee.engine.parser.DomainParser;
 import zee.engine.parser.EquationSet;
 import zee.engine.parser.ExpressionParser;
-import zee.engine.nodes.MathNodeWrapper;
-import zee.engine.nodes.MathNode;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import zee.engine.domain.DomainInterface;
-import zee.engine.parser.DomainParser;
+import zee.engine.parser.ParseException;
+
+import java.util.*;
 
 /**
  *
@@ -75,10 +71,7 @@ public class EquationProcessor {
     * @see EquationSet
     */
    public EquationProcessor(Map<String,String> defs) throws ParseException {
-       for(Map.Entry<String,String> entry : defs.entrySet())
-       {
-           eqs.addSymbol(entry.getKey(), entry.getValue());
-       }
+       defs.entrySet().stream().forEach(e -> eqs.addSymbol(e.getKey(), e.getValue()));
    }
 
    /** 
@@ -99,13 +92,7 @@ public class EquationProcessor {
                   Map<String,Map<String,String>> meta
                  ) throws ParseException 
    {
-       for(Map.Entry<String,String> entry : defs.entrySet())
-       {
-         String key = entry.getKey();
-         String def = entry.getValue();
-         Map<String,String> data = meta.get(key);
-         eqs.addSymbol(key, def, data);        
-      }
+       defs.entrySet().stream().forEach(e -> eqs.addSymbol(e.getKey(), e.getValue(), meta.get(e.getKey())));
    }
 
    /**
@@ -267,7 +254,7 @@ public class EquationProcessor {
       // do basic error checking here
       if( outputCols.size() < 1 ) {
          String msg = "No output columns are specified";
-         throw new ParseException(msg,0);
+         throw new ParseException(msg);
       }
       
       boolean usesDomain = false;
@@ -281,7 +268,7 @@ public class EquationProcessor {
             boolean defined = domainDefs.keySet().contains(var);
             if( ! defined ) {
                String err = var.toString() + " is not defined in the domain";
-               throw new ParseException(err,0);
+               throw new ParseException(err);
             }
          }
       }
@@ -323,7 +310,7 @@ public class EquationProcessor {
         }
         else {
             if( ! d.isSameLengthDefs()) {
-                throw new ParseException("Can't assign domain variables with different lengths", 0);
+                throw new ParseException("Can't assign domain variables with different lengths");
             }
            for(String defined : definedVars) {
               for(MathNode n : outNodes) {

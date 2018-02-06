@@ -2,18 +2,18 @@ package zee.parser;
 
 import zee.engine.parser.MathString;
 import zee.engine.parser.EquationSet;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.Assert.*;
 import zee.engine.parser.ExpressionParser;
+import zee.engine.parser.ParseException;
 
 public class MathStringTest {
 
     @Test(expected = ParseException.class)
-    public void badUnaryOperator() throws ParseException {
+    public void badUnaryOperator() throws Exception {
         EquationSet eqs = new EquationSet();
         eqs.addSymbol("f(x)", "#x");
 

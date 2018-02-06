@@ -1,6 +1,5 @@
 package zee.engine;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 import org.junit.Before;
-
+import zee.engine.parser.ParseException;
 
 
 public class EquationProcessorTest {

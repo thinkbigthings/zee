@@ -16,9 +16,10 @@ import zee.engine.nodes.PlusNode;
 import zee.engine.nodes.PowerNode;
 import zee.engine.nodes.SinNode;
 import zee.engine.nodes.TimesNode;
-import java.text.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
+import zee.engine.parser.ParseException;
+
 import static org.junit.Assert.*;
 
 public class ExpressionParserTest {

@@ -1,14 +1,6 @@
 package zee.engine.parser;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Given key "f(x,y)=x+y", symbol is f, arguments are [x,y], definition is x+y,
@@ -178,12 +170,12 @@ public final class EquationSet {
       if( intersection.size() == 1) {
          String msg = sym + " has an signature argument " + intersection 
                      + " which is already a defined function";
-         throw new ParseException(msg,0);
+         throw new ParseException(msg);
       }
       if( intersection.size() > 1) {
          String msg = sym + " has arguments " + intersection 
                      + " in the signature which are already defined functions";
-         throw new ParseException(msg,0);
+         throw new ParseException(msg);
       }
       
       
@@ -191,7 +183,7 @@ public final class EquationSet {
       if( getAllDomainVariables().contains(sym)) {
          String msg = sym + " can't be used as a function, "
                  + "it is already defined as a domain variable";
-         throw new ParseException(msg,0);
+         throw new ParseException(msg);
       }
 
         if(MathString.isMatrix(def))

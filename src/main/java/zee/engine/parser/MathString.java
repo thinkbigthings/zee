@@ -1,7 +1,6 @@
 package zee.engine.parser;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -132,7 +131,7 @@ public class MathString {
                 int lastParen = getMatchingParenthesis(input, input.indexOf("("));
                 if (lastParen < 1) {
                     String err = "Function not closed, matching parenthesis not found in " + input;
-                    throw new ParseException(err, 0);
+                    throw new ParseException(err);
                 }
                 String found = input.substring(0, lastParen + 1);
                 tokens.add(found);
@@ -155,7 +154,7 @@ public class MathString {
                 int match = getMatchingParenthesis(input, 0);
                 if (match < 1) {
                     String err = "Matching parenthesis not found in " + input;
-                    throw new ParseException(err, 0);
+                    throw new ParseException(err);
                 }
                 tokens.add(input.substring(0, match + 1));
                 input = input.substring(match + 1);
@@ -164,11 +163,11 @@ public class MathString {
 
             // if you get here then you have a syntax error
             String err = "Can't parse: " + input;
-            throw new ParseException(err, 0);
+            throw new ParseException(err);
         }
 
         if (tokens.isEmpty()) {
-            throw new ParseException("Can't parse: " + input, 0);
+            throw new ParseException("Can't parse: " + input);
         }
 
         // if you have a binary op, split around that

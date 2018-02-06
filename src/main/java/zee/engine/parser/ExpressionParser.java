@@ -1,17 +1,11 @@
 package zee.engine.parser;
 
-import zee.engine.nodes.MathNodeFactory;
-import zee.engine.nodes.MathNode;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import zee.engine.nodes.DomainTransformation;
+import zee.engine.nodes.MathNode;
+import zee.engine.nodes.MathNodeFactory;
 import zee.engine.nodes.VariableNode;
+
+import java.util.*;
 
 /**
  * Each element in the output set is parsed and plugged into the DAG. 
@@ -72,7 +66,7 @@ public class ExpressionParser implements ParserStrategy {
      * say, the function name or variable name that identifies a function.
      *
      *
-     * @throws java.text.ParseException
+     * @throws ParseException
      */
     public void parseAllSymbols() throws ParseException {
         List<String> symbols = equations.getAllSymbols();
@@ -116,7 +110,7 @@ public class ExpressionParser implements ParserStrategy {
                 && !equations.isSymbolDefined(MathString.getFunctionName(toParse))
                 && !factory.isOperatorDefined(MathString.getFunctionName(toParse))) {
             throw new ParseException("Function is not defined: "
-                    + MathString.getFunctionName(toParse), 0);
+                    + MathString.getFunctionName(toParse));
         }
 
 
@@ -194,7 +188,7 @@ public class ExpressionParser implements ParserStrategy {
         // (numbers, functions and variables should get caught before this point)
         // also things like "*x" or "/1" won't be split, so get caught here
         if (tokens.size() == 1) {
-            throw new ParseException(toParse + " is not splittable", 0);
+            throw new ParseException(toParse + " is not splittable");
         }
 
         // if two tokens:   first is unary op, second is rhs
@@ -218,7 +212,7 @@ public class ExpressionParser implements ParserStrategy {
             // things lik " x + +" and "x ~ 1" get caught before this,
             // so don't need to check operator or RHS
             if (MathString.isBinOp(lhsInput)) {
-                throw new ParseException(lhsInput + " is not a binary operator argument", 0);
+                throw new ParseException(lhsInput + " is not a binary operator argument");
             }
 
             node = factory.createNode(toParse, opInput);

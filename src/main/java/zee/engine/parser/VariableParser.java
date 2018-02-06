@@ -2,7 +2,6 @@
 package zee.engine.parser;
 
 import zee.engine.nodes.MathNode;
-import java.text.ParseException;
 import java.util.Map;
 import zee.engine.nodes.VariableNode;
 
@@ -24,7 +23,7 @@ public class VariableParser implements ParserStrategy {
     * @return a variable node when you parse a variable 
     * that is defined in a domain
     * 
-    * @throws java.text.ParseException
+    * @throws ParseException
     */
    @Override
    public MathNode parse(String toParse, Map<String,String> meta) throws ParseException {

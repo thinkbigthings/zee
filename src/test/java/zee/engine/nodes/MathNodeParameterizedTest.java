@@ -1,6 +1,5 @@
 package zee.engine.nodes;
 
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import zee.engine.parser.DomainParser;
@@ -16,6 +15,7 @@ import zee.engine.EquationProcessor;
 
 import zee.engine.parser.EquationSet;
 import zee.engine.parser.ExpressionParser;
+import zee.engine.parser.ParseException;
 
 
 @RunWith(Parameterized.class)

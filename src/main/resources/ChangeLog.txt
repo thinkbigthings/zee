@@ -1,4 +1,8 @@
 
+0.9.4
+- require Java 8
+- parse exceptions are now runtime exceptions
+- moved samples into sub-project
 
 0.9.3 released 2/23/2013
 - fixed bug with double-negatives on variables

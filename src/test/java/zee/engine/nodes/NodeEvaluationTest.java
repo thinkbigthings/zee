@@ -10,9 +10,10 @@ import zee.engine.parser.ExpressionParser;
 import zee.engine.parser.EquationSet;
 import zee.engine.domain.DomainInterface;
 
-import java.text.ParseException;
 import org.junit.Test;
 import zee.engine.EquationProcessor;
+import zee.engine.parser.ParseException;
+
 import static org.junit.Assert.*;
 
 public class NodeEvaluationTest {

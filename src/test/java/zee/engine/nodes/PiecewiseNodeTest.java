@@ -2,10 +2,10 @@ package zee.engine.nodes;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import java.text.ParseException;
 import java.util.List;
 import zee.engine.parser.EquationSet;
 import zee.engine.parser.ExpressionParser;
+import zee.engine.parser.ParseException;
 
 public class PiecewiseNodeTest {
 

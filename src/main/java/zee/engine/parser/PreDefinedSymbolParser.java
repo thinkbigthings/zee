@@ -1,7 +1,6 @@
 
 package zee.engine.parser;
 
-import java.text.ParseException;
 import java.util.Map;
 import zee.engine.nodes.MathNode;
 import zee.engine.nodes.MathNodeFactory;
@@ -44,7 +43,7 @@ public class PreDefinedSymbolParser implements ParserStrategy {
     * 
     * @return a MathNode representing this string
     * 
-    * @throws java.text.ParseException
+    * @throws ParseException
     */
    @Override
     public MathNode parse(String toParse, Map<String, String> meta) throws ParseException {

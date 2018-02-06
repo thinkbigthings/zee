@@ -1,7 +1,6 @@
 package samples;
 
 import zee.engine.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,7 +35,7 @@ public class SamplesTest {
    }
 
    @Test
-   public void simpleExpression1() throws ParseException
+   public void simpleExpression1() throws Exception
    {
       String toParse = "log10(1000) / (1.4 + 1.6)";
       double result;
@@ -50,7 +49,7 @@ public class SamplesTest {
    }
 
    @Test
-   public void simpleExpression2() throws ParseException
+   public void simpleExpression2() throws Exception
    {
       String toParse = "5 - 10 + 5";
       double result;
@@ -61,7 +60,7 @@ public class SamplesTest {
    }
 
    @Test
-   public void usingVariables() throws ParseException
+   public void usingVariables() throws Exception
     {
       // first define the variable
       eqs.put("a","2");
@@ -75,7 +74,7 @@ public class SamplesTest {
     }
 
    @Test
-   public void singleFunctions() throws ParseException
+   public void singleFunctions() throws Exception
     {
       // define the function signature and function definition
       // here we're using one function: f(x)=x^2
@@ -105,7 +104,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void multipleFunctions() throws ParseException
+    public void multipleFunctions() throws Exception
     {
       // define the function signatures and function definitions
       eqs.put("f(x)","x^2");
@@ -145,7 +144,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void multiVariateDomain() throws ParseException
+    public void multiVariateDomain() throws Exception
     {
 
       // define the function signature and function definition
@@ -186,7 +185,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void functionComposition() throws ParseException
+    public void functionComposition() throws Exception
     {
 
       // define the function signatures and function definitions
@@ -228,7 +227,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void summation() throws ParseException
+    public void summation() throws Exception
     {
       eqs.put("piApprox(k)","8*cumsum(ChebyshevTerm(k))");
       eqs.put("ChebyshevTerm(k)","( (-1)^k * (sqrt(2)-1)^(2*k+1)) / (2*k+1)");
@@ -246,7 +245,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void piecewiseFunctions() throws ParseException
+    public void piecewiseFunctions() throws Exception
     {
       eqs.put("myAbs(x)","if x < 0 then -x, if x == 0 then 0, else x");
       eqs.put("diff(x)","myAbs - abs(x)");
@@ -263,7 +262,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void numericFunction1D() throws ParseException
+    public void numericFunction1D() throws Exception
     {
       eqs.put("xSquaredData(x)","[-3,9;-2,4;-1,1;0,0;1,1;2,4;3,9]");
       k = new EquationProcessor(eqs);
@@ -279,7 +278,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void numericFunction2D() throws ParseException
+    public void numericFunction2D() throws Exception
     {
       double[] x = new double[] { 0, 1, 2, 3, 4, 5 };
       double[] y = new double[] { 0, 1, 2, 3, 4, 5 };
@@ -307,7 +306,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void numericFunctionInterpType1D() throws ParseException
+    public void numericFunctionInterpType1D() throws Exception
     {
       eqs.put("xSquaredLinearData(x)","[-3,9;-2,4;-1,1;0,0;1,1;2,4;3,9]");
       eqs.put("xSquaredCubicData(x)", "[-3,9;-2,4;-1,1;0,0;1,1;2,4;3,9]");
@@ -334,7 +333,7 @@ public class SamplesTest {
     }
 
     @Test
-    public void numericFunctionInterpType2D() throws ParseException
+    public void numericFunctionInterpType2D() throws Exception
     {
       double[] x = new double[] { 0, 1, 2, 3, 4, 5 };
       double[] y = new double[] { 0, 1, 2, 3, 4, 5 };
