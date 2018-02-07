@@ -314,7 +314,7 @@ public class Domain implements DomainInterface {
       vals = matrix.transpose().getData();
       
       Comparator<double[]> comparator = new DoubleArrayComparator();
-      TreeSet<double[]> uniquePoints = new TreeSet<double[]>(comparator);
+      TreeSet<double[]> uniquePoints = new TreeSet<>(comparator);
       for(int r=0; r < vals.length; r++) {
          uniquePoints.add(vals[r]);
       }
@@ -351,7 +351,7 @@ public class Domain implements DomainInterface {
    }
    @Override
    public boolean containsKey(Object key) {
-      return points.containsKey((String)key);
+      return points.containsKey(key);
    }
    @Override
    public boolean containsValue(Object value) {

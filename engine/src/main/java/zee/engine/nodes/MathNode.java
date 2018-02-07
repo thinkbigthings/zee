@@ -8,7 +8,6 @@ import zee.engine.domain.DomainInterface;
 
 public abstract class MathNode {
   
-   protected static boolean debugOutput = false;
    protected List<MathNode> children = new ArrayList<>();
    protected List<MathNode> parents  = new ArrayList<>();
    protected Object id = null;
@@ -31,18 +30,7 @@ public abstract class MathNode {
        for(MathNode child : children)
            child.clearCache();
    }
-   
-   public List<MathNode> getParentsOfType(Class c) {
-      List<MathNode> typed = new ArrayList<>();
-      for(MathNode d : parents) {
-         if(d.getClass().equals(c))
-            typed.add(d);
-         else
-            typed.addAll(d.getParentsOfType(c));
-      }
-      return typed;
-   }
-   
+
    /**
     * Returns true if this string is the ID of this node or any child node
     * anywhere in the tree underneath

@@ -273,7 +273,7 @@ public class EquationProcessor {
          }
       }
 
-      // some nodes (sum, min, max, depending on how many arguments they have)
+      // some nodes (sum, cumsum, min, max, depending on how many arguments they have)
       // will not return the correct overall answers
       // if you split the domain because they need to function over the ENTIRE
       // domain at one time. This block tests for the presence of nodes that

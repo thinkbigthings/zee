@@ -106,7 +106,7 @@ public class PiecewiseNode extends MathNode {
       if(overdefined) {
          String message = "Piecewise function is over-defined. ";
          message = message.substring(0,message.length()-2);
-         // logger goes here
+         // TODO logger goes here
       }
       
       // if not everything was evaluated,
@@ -123,7 +123,7 @@ public class PiecewiseNode extends MathNode {
          else {
             String message = "Piecewise function is under-defined. ";
             message = message.substring(0,message.length()-2);
-            // logger goes here
+            // TODO logger goes here
          }
       }
       

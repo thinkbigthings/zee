@@ -2,6 +2,8 @@ package zee.engine.nodes;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import zee.engine.parser.EquationSet;
 import zee.engine.parser.ExpressionParser;
@@ -27,7 +29,7 @@ public class PiecewiseNodeTest {
          MathNode f3 = parser.parse("f3");
          
          PiecewiseNode p = (PiecewiseNode)parser.parse("f2").getChild(0);
-         List<MathNode> v = p.getParentsOfType(DomainTransformation.class);
+         List<MathNode> v = getParentsOfType(p, DomainTransformation.class);
          
          assertTrue(v.contains(f2));
          assertTrue(v.contains(f3));
@@ -38,5 +40,16 @@ public class PiecewiseNodeTest {
       }
    }
 
-   
+
+   private List<MathNode> getParentsOfType(MathNode n, Class c) {
+      List<MathNode> typed = new ArrayList<>();
+      for(MathNode d : n.parents) {
+         if(d.getClass().equals(c))
+            typed.add(d);
+         else
+            typed.addAll(getParentsOfType(d, c));
+      }
+      return typed;
+   }
+
 }
