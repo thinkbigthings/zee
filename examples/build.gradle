@@ -1,0 +1,20 @@
+
+repositories {
+	mavenCentral()
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+jar {
+	baseName = 'zee-engine-samples'
+	version = '0.9.4-SNAPSHOT'
+}
+
+dependencies {
+
+	compile project(':engine')
+
+}
+
