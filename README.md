@@ -7,6 +7,13 @@ Notable capabilities of the engine include:
 - Supports all standard java.lang.Math functions and constants, plus additional functions
 - Allows Analytic, Piecewise, and Numeric (interpolated) function definitions
 
+## Building
+
+gradle clean build jacocoTestReport
+
+
+## Usage
+
 ZEE allows you to do everything from define and evaluate simple expressions and variables, to define sets of functions and evaluate them together over the domain of your choice.
 
 ```
