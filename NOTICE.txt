@@ -1,4 +1,4 @@
-Copyright 2010 ZEE
+Copyright 2010 Z Evaluation Engine
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this source or binary distribution except in compliance with the License.

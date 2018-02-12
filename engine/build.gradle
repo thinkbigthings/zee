@@ -29,6 +29,8 @@ jacocoTestReport {
 jar {
 	from sourceSets.main.allSource
 	from javadoc.destinationDir
+	from "../LICENSE.txt"
+	from "../NOTICE.txt"
 }
 
 jar.dependsOn javadoc

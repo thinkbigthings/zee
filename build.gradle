@@ -12,7 +12,6 @@ subprojects {
 	compileJava.options.encoding = 'UTF-8'
 }
 
-// TODO ensure apache license is properly documented
 // TODO upgrade to latest commons math, update changelog
 // TODO put jdepend in build
 
