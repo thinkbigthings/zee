@@ -23,3 +23,10 @@ jacocoTestReport {
 		csv.enabled false
 	}
 }
+
+// includes source in main lib jar
+// includes javadoc if javadoc is built before jar
+jar {
+	from sourceSets.main.allSource
+	from javadoc.destinationDir
+}

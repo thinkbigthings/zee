@@ -12,10 +12,8 @@ subprojects {
 	compileJava.options.encoding = 'UTF-8'
 }
 
-// TODO make jacocoTestReport javadoc depend on just build, update README
-// TODO attach javadocs to jar
-// TODO make a build artifact with attached sources
-// TODO handle apache license, move changelog out of build
+// TODO make jacocoTestReport and javadoc depend on just build, update README
+// TODO ensure apache license is properly documented
 // TODO upgrade to latest commons math, update changelog
 // TODO put jdepend in build
 
