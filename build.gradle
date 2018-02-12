@@ -12,9 +12,38 @@ subprojects {
 	compileJava.options.encoding = 'UTF-8'
 }
 
-// TODO write javadocs
+// TODO make jacocoTestReport javadoc depend on just build, update README
+// TODO attach javadocs to jar
 // TODO make a build artifact with attached sources
-// TODO handle apache license
-// TODO remove poms
-// TODO set up gradlew
+// TODO handle apache license, move changelog out of build
+// TODO upgrade to latest commons math, update changelog
+// TODO put jdepend in build
 
+// TODO be able to do maven publish from gradle
+//<groupId>zee</groupId>
+//    <artifactId>zee</artifactId>
+//	<name>z-evaluation-engine</name>
+//    <version>0.9.4-SNAPSHOT</version>
+//	<packaging>jar</packaging>
+//    <description>This is a Java library for evaluating mathematical expressions, functions, and sets of equations.</description>
+//	<inceptionYear>2000</inceptionYear>
+//    <licenses>
+//        <license>
+//            <name>The Apache Software License, Version 2.0</name>
+//<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+//<comments>A business-friendly OSS license</comments>
+//        </license>
+//</licenses>
+//
+//    <developers>
+//        <developer>
+//            <name>Jason Young</name>
+//			<roles>
+//				<role>owner</role>
+//            </roles>
+//		</developer>
+//    </developers>
+
+// TODO remove poms
+// TODO set up gradlew, update build section of readme
+// TODO publish and bump version

@@ -8,3 +8,5 @@ dependencies {
 	compile project(':engine')
 }
 
+// don't generate javadocs for example project
+tasks.withType(Javadoc).all { enabled = false }

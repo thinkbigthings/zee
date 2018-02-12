@@ -9,7 +9,7 @@ public class LTENode extends MathNode {
    }
  
    /**
-    * returns 1 where lhs <= rhs
+    * returns 1 where lhs &le; rhs
     * returns 0 elsewhere
     */
    @Override

@@ -10,7 +10,7 @@ public class LessThanNode extends MathNode {
    }
  
    /**
-    * returns 1 where lhs < rhs
+    * returns 1 where lhs &lt; rhs
     * returns 0 elsewhere
     */
    @Override

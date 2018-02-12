@@ -12,9 +12,9 @@ public class DoubleArrayComparator implements Comparator<double[]> {
    }
 
    /**
-    * if r1 < r2, returns -1, if same, returns 0, if r1 > r2, returns 1.
+    * if r1 &lt; r2, returns -1, if same, returns 0, if r1 &gt; r2, returns 1.
     *
-    * r1 < r2 if, for the leftmost (smallest-indexed) element which is not 
+    * r1 &lt; r2 if, for the leftmost (smallest-indexed) element which is not
     * the same between r1 and r2, that element in r1 is smaller than the one
     * in r2. See the DoubleArrayComparatorTest.java for expected behavior.
     */

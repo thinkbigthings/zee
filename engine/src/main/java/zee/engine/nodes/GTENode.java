@@ -10,7 +10,7 @@ public class GTENode extends MathNode {
    }
  
    /**
-    * returns 1 where lhs >= rhs
+    * returns 1 where lhs &ge; rhs
     * returns 0 elsewhere
     */
    @Override

@@ -214,7 +214,7 @@ public class EquationProcessor {
     * Recommend wrapping this method in try{..}catch{OutOfMemoryError e}{}
     *
     * @param domainDefs definition of each domain variable in the format
-    * Map<variableName,variableDefinition>. 
+    * Map&lt;variableName,variableDefinition&gt;.
     * <P>
     * @param outputCols the expressions to be evaluated.
     * <P>

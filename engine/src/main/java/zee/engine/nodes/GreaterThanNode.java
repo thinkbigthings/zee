@@ -11,7 +11,7 @@ public class GreaterThanNode extends MathNode {
    }
  
    /**
-    * returns 1 where lhs > rhs
+    * returns 1 where lhs &gt; rhs
     * returns 0 elsewhere
     */
    @Override

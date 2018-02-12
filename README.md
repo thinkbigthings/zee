@@ -9,7 +9,7 @@ Notable capabilities of the engine include:
 
 ## Building
 
-gradle clean build jacocoTestReport
+gradle clean build jacocoTestReport javadoc
 
 
 ## Usage
