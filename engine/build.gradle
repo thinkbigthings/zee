@@ -1,13 +1,5 @@
 
-repositories {
-	mavenCentral()
-}
-
-apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: "jacoco"
-
-sourceCompatibility = 1.8
 
 jar {
 	baseName = 'zee-engine'
@@ -23,13 +15,11 @@ dependencies {
 
 jacoco {
 	toolVersion = "0.7.9"
-//	reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
 jacocoTestReport {
 	reports {
 		xml.enabled false
 		csv.enabled false
-//		html.destination "${buildDir}/jacocoHtml"
 	}
 }

@@ -1,0 +1,20 @@
+
+subprojects {
+
+	repositories {
+		mavenCentral()
+	}
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+
+	sourceCompatibility = 1.8
+	compileJava.options.encoding = 'UTF-8'
+}
+
+// TODO write javadocs
+// TODO make a build artifact with attached sources
+// TODO handle apache license
+// TODO remove poms
+// TODO set up gradlew
+
