@@ -30,3 +30,6 @@ jar {
 	from sourceSets.main.allSource
 	from javadoc.destinationDir
 }
+
+jar.dependsOn javadoc
+build.dependsOn jacocoTestReport
