@@ -14,6 +14,8 @@ gradle clean build
 this command will build the javadocs and run the code coverage report
 all sources and javadocs will be bundled in the final build artifact
 
+to install to local repository as a maven artifact, use gradle clean install
+
 
 ## Usage
 

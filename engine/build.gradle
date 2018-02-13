@@ -1,9 +1,11 @@
 
 apply plugin: "jacoco"
+apply plugin: "maven"
+
+version = '0.9.4-SNAPSHOT'
 
 jar {
 	baseName = 'zee-engine'
-	version = '0.9.4-SNAPSHOT'
 }
 
 dependencies {
@@ -35,3 +37,22 @@ jar {
 
 jar.dependsOn javadoc
 build.dependsOn jacocoTestReport
+
+// for maven install
+
+pom {
+	project {
+		groupId = 'zee'
+		artifactId = 'zee-engine'
+		// version comes from gradle project version
+
+		inceptionYear = '2000'
+		licenses {
+			license {
+				name 'The Apache Software License, Version 2.0'
+				url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+				comments 'A business-friendly OSS license'
+			}
+		}
+	}
+}
