@@ -4,6 +4,8 @@
 - parse exceptions are now runtime exceptions
 - moved samples into sub-project
 - build with gradle instead of maven
+- build jar with sources and javadocs
+- upgrade to latest commons math 3.6.1
 
 0.9.3 released 2/23/2013
 - fixed bug with double-negatives on variables
